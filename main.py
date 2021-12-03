@@ -13,4 +13,5 @@ today = datetime.datetime.today().strftime("%Y.%m.%d")
 issue_title = f"TIL(Today I Learned) : {today}"
 issue_contents = extract_post_title(urls)
 repository = Github(access_token).get_user().get_repo(repo_name)
-repo.create_issue(title=issue_title, body = issue_contents)
+repository.create_issue(title=issue_title, body = issue_contents)
+
