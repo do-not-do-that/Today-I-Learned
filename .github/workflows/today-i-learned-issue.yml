@@ -5,7 +5,7 @@ name: TIL Issue Maker
 
 on:
   schedule:
-    - cron: '5 17 * * *'
+    - cron: '55 8 * * *'
 
 jobs:
   build:
