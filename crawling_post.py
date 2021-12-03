@@ -1,16 +1,20 @@
 import requests
 from bs4 import BeautifulSoup
-url = "https://ffoorreeuunn.tistory.com"
 
-def parsing(url):
-    
-    string = requests.get(url)
-    
-    html = string.text
-    soup = BeautifulSoup(html, 'html.parser')
-    
-    return soup
+urls = ["https://ffoorreeuunn.tistory.com"]
 
+def deco_parsing(function):
+    def parsing(*args):
+        data = requests.get(urls[-1])
+
+        html = data.text
+        soup = BeautifulSoup(html, 'html.parser')
+
+        return function(soup)
+    return parsing
+
+
+@deco_parsing
 def extract_post_title(soup):
     today_contents = ''
     today_posts = soup.select(".item_category")
@@ -23,10 +27,18 @@ def extract_post_title(soup):
             post_title = today_post.select("strong")[0].text
             url_suffix = today_post.select("a")[0].attrs['href']
             url = url_prefix + url_suffix
+            urls.append(url)
+            tags = extract_post_tag(urls)
             today_contents += f"<h2><a href={url}>{post_title}</a></h2>\n\n"
+            for tag in tags:
+                today_contents += f"#{tag}\n"
         break
             
     return today_contents
 
+@deco_parsing
+def extract_post_tag(soup):
+    tags = soup.select(".tag_content")[0].text.split(',\r\n')
+    return tags
 
-print(extract(parsing(url)))
+
