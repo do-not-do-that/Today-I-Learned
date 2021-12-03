@@ -1,7 +1,7 @@
 import os
 import datetime
 from crawling_post import extract_post_title
-from github_utils import get_github_repo, upload_github_issue
+from github import Github
 
 
 access_token = os.environ['TIL_TOKEN']
@@ -12,5 +12,5 @@ urls = ["https://ffoorreeuunn.tistory.com"]
 today = datetime.datetime.today().strftime("%Y.%m.%d")
 issue_title = f"TIL(Today I Learned) : {today}"
 issue_contents = extract_post_title(urls)
-repository = get_github_repo(access_token, repo_name)
-upload_github_issue(repository, issue_title, issue_contents)
+repository = Github(access_token).get_user().get_repo(repo_name)
+repo.create_issue(title=issue_title, body = issue_contents)
