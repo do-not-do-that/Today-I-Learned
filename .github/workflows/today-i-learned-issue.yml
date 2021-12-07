@@ -25,4 +25,4 @@ jobs:
       run: |
         python main.py
       env:
-        TIL_TOKEN: ${{secrets.TIL_TOKEN}}
+        TIL_TOKEN: ${{ secrets.TIL_TOKEN }}
