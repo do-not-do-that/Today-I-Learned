@@ -5,11 +5,10 @@ name: TIL Issue Maker
 
 on:
   schedule:
-    - cron: '48 7 * * *'
+    - cron: '27 12 * * *'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
