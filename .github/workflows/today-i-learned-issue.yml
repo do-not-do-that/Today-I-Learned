@@ -5,7 +5,7 @@ name: TIL Issue Maker
 
 on:
   schedule:
-    - cron: '32 2 * * *'
+    - cron: '38 2 * * *'
 
 jobs:
   build:
@@ -24,4 +24,4 @@ jobs:
       run: |
         python main.py
       env:
-        TIL_TOKEN: ${{ secrets.TIL_TOKEN }}
+        MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
