@@ -4,7 +4,7 @@ from crawling_post import extract_post_title
 from github import Github
 
 
-access_token = os.environ['TIL_TOKEN']
+access_token = os.environ['MY_GITHUB_TOKEN']
 repo_name = "Today-I-Learned"
 
 urls = ["https://ffoorreeuunn.tistory.com"]
